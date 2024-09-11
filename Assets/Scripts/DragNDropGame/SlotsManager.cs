@@ -49,8 +49,8 @@ namespace Assets.Scripts.DragNDropGame
 
 				if (item.FigureType == slot.FigureType)
 					_spawnInCorrectSlotFiguresCount++;
-				
-				item.SetInteractive(item.FigureType != slot.FigureType);
+
+				item.SetInteractive(false);
 				_itemsStorage.Items[i].SetPosition(slot.transform);
 			}
 
@@ -61,7 +61,10 @@ namespace Assets.Scripts.DragNDropGame
 		private void UpdatePositions()
 		{
 			foreach (var pair in _itemToSlot)
+			{
 				pair.Key.MoveToPosition(pair.Value.transform);
+				pair.Key.SetInteractive(pair.Key.FigureType != pair.Value.FigureType);
+			}
 		}
 
 		private void Reset()

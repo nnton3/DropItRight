@@ -6,10 +6,6 @@ namespace Assets.Scripts.DragNDropGame
 {
 	public class GameController : IDisposable
 	{
-		private const int START_GAME_DELAY = 1000;
-
-		public event Action onStartGame;
-		public event Action OnGameReset;
 		private readonly VictoryObserver _victoryObserver;
 		private readonly EndGameMenu _endGameMenu;
 
@@ -19,15 +15,6 @@ namespace Assets.Scripts.DragNDropGame
 			_endGameMenu = endGameMenu;
 
 			_victoryObserver.OnVictory += ShowEndGameMenu;
-			_endGameMenu.OnResetBtnClicked += StartGameAsync;
-
-			StartGameAsync();
-		}
-
-		private async void StartGameAsync()
-		{
-			await Task.Delay(START_GAME_DELAY);
-			onStartGame?.Invoke();
 		}
 
 		private void ShowEndGameMenu()
@@ -38,7 +25,6 @@ namespace Assets.Scripts.DragNDropGame
 		public void Dispose()
 		{
 			_victoryObserver.OnVictory -= ShowEndGameMenu;
-			_endGameMenu.OnResetBtnClicked -= StartGameAsync;
 		}
 	}
 }

@@ -54,17 +54,17 @@ namespace Assets.Scripts.DragNDropGame
 			var tmpItem = _slotToItem[slot];
 			var tmpSlot = _itemToSlot[item];
 
-			if (item.FigureType == slot.FigureType)
+			if (item.FigureType == slot.FigureType && item.FigureType != _slotToItem[slot].FigureType)
 			{
 				OnDropOnCorrectSlot?.Invoke();
 				item.MoveToPosition(slot.transform);
 				item.SetInteractive(false);
 				tmpItem.MoveToPosition(tmpSlot.transform);
-				
+
 				var swapInCorrect = tmpItem.FigureType == tmpSlot.FigureType;
 				if (swapInCorrect)
 					OnDropOnCorrectSlot?.Invoke();
-					
+
 				tmpItem.SetInteractive(!swapInCorrect);
 
 				_slotToItem[slot] = item;

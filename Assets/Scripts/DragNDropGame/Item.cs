@@ -47,14 +47,17 @@ namespace Assets.Scripts.DragNDropGame
 
 		public void MoveToPosition(Transform slot)
 		{
-			transform.SetParent(slot);
-			transform.localScale = Vector3.one;
-			transform.DOMove(slot.position, MOVE_TIME);
+			transform.DOMove(slot.position, MOVE_TIME).Play().OnComplete(() =>
+			{
+				transform.SetParent(slot);
+				transform.localScale = Vector3.one;
+			});
 		}
 
 		public void SetInteractive(bool isInteractive)
 		{
 			_isInteractive = isInteractive;
+			_image.raycastTarget = isInteractive;
 		}
 
 		public void PlayWrongAnimation()
@@ -89,16 +92,13 @@ namespace Assets.Scripts.DragNDropGame
 
 		public void OnDrag(PointerEventData eventData)
 		{
-			if (!_isInteractive) 
+			if (!_isInteractive)
 				return;
 
 			_rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
 		}
 
-		public void OnEndDrag(PointerEventData eventData) 
-		{
-			_image.raycastTarget = true;
-		}
+		public void OnEndDrag(PointerEventData eventData) { }
 	}
 
 	public class ItemMoverFactory : IFactory<ItemSpawnData, Item>
