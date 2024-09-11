@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a669630b73b863540b37d3de4e54b624, type: 3}
+  m_Name: ItemsRepository
+  m_EditorClassIdentifier: 
+  _cubeData: {fileID: 11400000, guid: c61ba12e9b4fc4f4b944b39dbd8dfe5c, type: 2}
+  _sphereData: {fileID: 11400000, guid: cab8b37d208f6664caad77b132ee7d69, type: 2}
+  _pyramidData: {fileID: 11400000, guid: f1b5690c50b4de742b7f8185f43ffa44, type: 2}
